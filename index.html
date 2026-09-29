@@ -17,8 +17,7 @@
   body{background:var(--paper); color:var(--ink); font-family:"Open Sans",system-ui,sans-serif;}
   .mono{font-family:"JetBrains Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums;}
   .app{
-    max-width:430px; margin:0 auto; min-height:100dvh;
-    display:flex; flex-direction:column; background:var(--paper);
+    max-width:430px; margin:0 auto; background:var(--paper);
     position:relative; overflow-x:hidden;
   }
   .topbar{
@@ -35,7 +34,7 @@
   }
   .h1{position:relative; font-size:26px; font-weight:800; margin:0; letter-spacing:-.2px;}
   .sub{position:relative; font-size:13px; color:rgba(255,255,255,.78); margin:4px 0 0;}
-  main{flex:1; padding:16px 16px calc(96px + env(safe-area-inset-bottom,0px)); display:flex; flex-direction:column; gap:16px;}
+  main{padding:16px 16px calc(96px + env(safe-area-inset-bottom,0px)); display:flex; flex-direction:column; gap:16px;}
   .card{
     background:var(--surface); border:1px solid var(--line); border-radius:16px;
     padding:16px; display:flex; flex-direction:column; gap:8px;
@@ -158,7 +157,8 @@
 
   /* tab bar */
   nav.tabbar{
-    position:sticky; bottom:0; z-index:5; display:flex; background:var(--surface);
+    position:fixed; left:50%; transform:translateX(-50%); bottom:0; width:100%; max-width:430px;
+    z-index:5; display:flex; background:var(--surface);
     border-top:1px solid var(--line); padding:8px 6px calc(8px + env(safe-area-inset-bottom,0px));
   }
   nav.tabbar button{
