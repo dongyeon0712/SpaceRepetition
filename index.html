@@ -29,11 +29,11 @@
   .brand-row{position:relative; display:flex; align-items:center; gap:8px; margin:0 0 4px;}
   .brand-mark{flex-shrink:0; display:block;}
   .eyebrow{
-    font-size:12px; font-weight:800; letter-spacing:2px;
+    font-size:clamp(13px,3.2vw,16px); font-weight:800; letter-spacing:2px;
     text-transform:uppercase; color:var(--gold); margin:0;
   }
-  .h1{position:relative; font-size:26px; font-weight:800; margin:0; letter-spacing:-.2px;}
-  .sub{position:relative; font-size:13px; color:rgba(255,255,255,.78); margin:4px 0 0;}
+  .h1{position:relative; font-size:clamp(28px,7vw,40px); font-weight:800; margin:0; letter-spacing:-.2px;}
+  .sub{position:relative; font-size:clamp(14px,3.6vw,18px); color:rgba(255,255,255,.78); margin:4px 0 0;}
   main{padding:16px 16px calc(96px + env(safe-area-inset-bottom,0px)); display:flex; flex-direction:column; gap:16px;}
   .card{
     background:var(--surface); border:1px solid var(--line); border-radius:16px;
@@ -44,11 +44,11 @@
     color:var(--purple-ink); border-radius:18px; padding:20px; box-shadow:var(--shadow);
     display:flex; align-items:center; justify-content:space-between; gap:12px;
   }
-  .hero-stat .num{font-size:40px; font-weight:800; line-height:1;}
-  .hero-stat .label{font-size:13px; color:rgba(58,34,102,.7); margin-top:2px;}
+  .hero-stat .num{font-size:clamp(44px,11vw,64px); font-weight:800; line-height:1;}
+  .hero-stat .label{font-size:clamp(14px,3.6vw,18px); color:rgba(58,34,102,.7); margin-top:2px;}
   .btn{
     appearance:none; border:none; border-radius:12px; font:inherit; font-weight:700;
-    cursor:pointer; padding:12px 18px; font-size:14px; display:inline-flex;
+    cursor:pointer; padding:clamp(12px,3vw,16px) clamp(18px,4.5vw,24px); font-size:clamp(15px,3.8vw,18px); display:inline-flex;
     align-items:center; justify-content:center; gap:8px; transition:transform .08s ease;
   }
   .btn:active{transform:scale(.97);}
@@ -58,18 +58,18 @@
   .btn-ghost{background:var(--surface-2); color:var(--ink);}
   .btn-block{width:100%;}
   .btn:disabled{opacity:.5; cursor:default;}
-  h2.section-title{font-size:15px; font-weight:800; margin:0; color:var(--ink); display:flex; align-items:center; gap:8px;}
+  h2.section-title{font-size:clamp(16px,4vw,20px); font-weight:800; margin:0; color:var(--ink); display:flex; align-items:center; gap:8px;}
   .deck-row{
     display:flex; align-items:center; gap:12px; padding:12px; border-radius:14px;
     border:1px solid var(--line); background:var(--surface); cursor:pointer;
   }
-  .deck-swatch{width:40px; height:40px; border-radius:10px; background:var(--purple-soft); color:var(--purple);
+  .deck-swatch{width:clamp(40px,10vw,52px); height:clamp(40px,10vw,52px); border-radius:10px; background:var(--purple-soft); color:var(--purple);
     display:flex; align-items:center; justify-content:center; flex-shrink:0;}
   .deck-info{flex:1; min-width:0;}
-  .deck-info .t{font-weight:700; font-size:14.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
-  .deck-info .d{font-size:12.5px; color:var(--ink-dim);}
+  .deck-info .t{font-weight:700; font-size:clamp(15px,3.8vw,19px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .deck-info .d{font-size:clamp(13px,3.2vw,16px); color:var(--ink-dim);}
   .chip{
-    font-size:11.5px; font-weight:700; padding:3px 9px; border-radius:999px; white-space:nowrap;
+    font-size:clamp(12px,3vw,14px); font-weight:700; padding:4px 10px; border-radius:999px; white-space:nowrap;
   }
   .chip-due{background:var(--gold); color:var(--gold-ink);}
   .chip-done{background:var(--success-soft); color:var(--success);}
@@ -95,16 +95,16 @@
       linear-gradient(var(--purple),var(--purple)) 0 64px/85% 4px no-repeat;
     transform:rotate(-14deg);
   }
-  .face-label{font-size:11px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:var(--purple);}
-  .face-text{flex:1; display:flex; align-items:center; font-size:19px; font-weight:700; line-height:1.4; text-wrap:balance; margin-top:10px;}
-  .flip-hint{font-size:12px; color:var(--ink-dim); text-align:center;}
+  .face-label{font-size:clamp(12px,3vw,14px); font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:var(--purple);}
+  .face-text{flex:1; display:flex; align-items:center; font-size:clamp(20px,5vw,28px); font-weight:700; line-height:1.4; text-wrap:balance; margin-top:10px;}
+  .flip-hint{font-size:clamp(13px,3.2vw,15px); color:var(--ink-dim); text-align:center;}
   .grade-row{display:grid; grid-template-columns:repeat(4,1fr); gap:8px;}
   .grade-btn{
     border-radius:12px; padding:12px 4px; text-align:center; border:1.5px solid var(--line);
     background:var(--surface); cursor:pointer; display:flex; flex-direction:column; gap:2px;
   }
-  .grade-btn b{font-size:13px;}
-  .grade-btn span{font-size:10.5px; color:var(--ink-dim);}
+  .grade-btn b{font-size:clamp(14px,3.5vw,17px);}
+  .grade-btn span{font-size:clamp(11px,2.8vw,13px); color:var(--ink-dim);}
   .grade-again{border-color:var(--danger); color:var(--danger);}
   .grade-hard{border-color:var(--warning); color:var(--warning);}
   .grade-good{border-color:var(--info); color:var(--info);}
@@ -118,9 +118,9 @@
   }
   .search input{border:none; outline:none; background:transparent; font:inherit; color:var(--ink); flex:1;}
   .browse-card{border:1px solid var(--line); border-radius:14px; background:var(--surface); overflow:hidden;}
-  .browse-card .front{padding:13px 14px; font-weight:700; font-size:14px; display:flex; gap:10px; align-items:flex-start; cursor:pointer;}
+  .browse-card .front{padding:14px 16px; font-weight:700; font-size:clamp(15px,3.8vw,18px); display:flex; gap:10px; align-items:flex-start; cursor:pointer;}
   .browse-card .front .qmark{color:var(--purple); flex-shrink:0;}
-  .browse-card .back{padding:0 14px 14px 38px; font-size:13.5px; color:var(--ink-dim); display:none;}
+  .browse-card .back{padding:0 16px 14px 40px; font-size:clamp(14px,3.5vw,17px); color:var(--ink-dim); display:none;}
   .browse-card.open .back{display:block;}
   .browse-card .meta{display:flex; gap:12px; padding:0 14px 12px 38px; font-size:11px; color:var(--ink-dim);}
   .browse-card .meta b{color:var(--ink);}
@@ -144,14 +144,14 @@
   .dropzone input{display:none;}
   .file-pill{display:inline-flex; align-items:center; gap:6px; background:var(--purple-soft); color:var(--purple);
     font-size:12.5px; font-weight:700; padding:6px 10px; border-radius:999px;}
-  .status-line{font-size:12.5px; color:var(--ink-dim); display:flex; align-items:center; gap:8px;}
+  .status-line{font-size:clamp(13px,3.2vw,15px); color:var(--ink-dim); display:flex; align-items:center; gap:8px;}
   .spinner{width:14px; height:14px; border-radius:50%; border:2px solid var(--line); border-top-color:var(--purple); animation:spin .7s linear infinite;}
   @keyframes spin{to{transform:rotate(360deg);}}
   .preview-list{display:flex; flex-direction:column; gap:8px; max-height:260px; overflow-y:auto;}
-  .preview-item{border:1px solid var(--line); border-radius:10px; padding:10px 12px; font-size:13px;}
+  .preview-item{border:1px solid var(--line); border-radius:10px; padding:10px 12px; font-size:clamp(14px,3.5vw,16px);}
   .preview-item .q{font-weight:700;}
   .preview-item .a{color:var(--ink-dim); margin-top:2px;}
-  .banner{border-radius:12px; padding:10px 12px; font-size:12.5px; display:flex; gap:8px; align-items:flex-start;}
+  .banner{border-radius:12px; padding:10px 12px; font-size:clamp(13px,3.2vw,15px); display:flex; gap:8px; align-items:flex-start;}
   .banner-danger{background:var(--danger-soft); color:var(--danger);}
   .banner-info{background:var(--info-soft); color:var(--info);}
 
@@ -163,9 +163,9 @@
   }
   nav.tabbar button{
     flex:1; background:none; border:none; display:flex; flex-direction:column; align-items:center; gap:3px;
-    color:var(--ink-dim); font:inherit; font-size:10.5px; font-weight:700; padding:6px 2px; cursor:pointer; border-radius:10px;
+    color:var(--ink-dim); font:inherit; font-size:clamp(11px,2.8vw,13px); font-weight:700; padding:8px 2px; cursor:pointer; border-radius:10px;
   }
-  nav.tabbar button svg{width:22px; height:22px;}
+  nav.tabbar button svg{width:clamp(22px,5.5vw,28px); height:clamp(22px,5.5vw,28px);}
   nav.tabbar button.active{color:var(--purple);}
   nav.tabbar button.active svg{stroke:var(--purple);}
   [hidden]{display:none!important;}
