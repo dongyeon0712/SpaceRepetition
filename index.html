@@ -310,6 +310,30 @@
     ]
   };
 
+  var SEED_DECK_3 = {
+    title: "Technology and the Virtues - Essentials",
+    description: "The core argument from Vallor's introduction, condensed",
+    cards: [
+      {front:"What are technomoral virtues?", back:"Moral character traits, cultivated individually and collectively, that help humans live well with emerging technologies."},
+      {front:"What is acute technosocial opacity?", back:"Our growing inability to see where our technosocial future is heading, which makes it hard to identify and pursue a good life."},
+      {front:"How does Vallor broadly define ethics?", back:"Reflective inquiry into the good life."},
+      {front:"What does it mean that technologies \"afford\" actions?", back:"They open up some possibilities for action and close off others."},
+      {front:"Why are 21st-century choices \"technomoral\" rather than just moral?", back:"They depend on the changing affordances of the technological systems that support and shape our lives."},
+      {front:"What has changed about the scale of moral choices today?", back:"Our combined choices now affect people across the planet, other species, and future generations, not just individuals or local groups."},
+      {front:"What is Kant's categorical imperative?", back:"Act only on principles you could will to be universal rules for everyone in similar situations."},
+      {front:"Why does Kantian ethics struggle today?", back:"We can't will a principle universally when we can't clearly picture the future worlds it would create."},
+      {front:"What does utilitarianism ask?", back:"Choose the action that produces the greatest happiness for all affected."},
+      {front:"Why does utilitarianism struggle today?", back:"Technological outcomes are too uncertain and numerous to assign reliable probabilities."},
+      {front:"Summary: Kant fails because we can't ___; utilitarianism fails because we can't ___.", back:"Imagine the future; calculate the future."},
+      {front:"What is \"Ultimate Harm\"?", back:"Making worthwhile life on Earth permanently impossible."},
+      {front:"What is virtue ethics?", back:"Thinking about the good life as achievable through moral traits that people actively cultivate in themselves."},
+      {front:"Which three traditions does the book draw on?", back:"Aristotelian, Confucian, and Buddhist ethics."},
+      {front:"What is the bootstrapping problem?", back:"The people who need technomoral wisdom are the same ones building and using technology without it."},
+      {front:"Is Vallor anti-technology?", back:"No. She hopes for human flourishing with technology and argues that being anti-technology is in some sense being anti-human."},
+      {front:"What are the \"only meaningful questions\" about technology?", back:"Which technologies to create, with what knowledge and design, affording what, shared with whom, for whose benefit, and for what greater ends."}
+    ]
+  };
+
   var EASE_DEFAULT = 2.5, EASE_MIN = 1.3, EASE_MAX = 2.8;
 
   function nowIso(){ return new Date().toISOString(); }
@@ -378,7 +402,7 @@
     async seedIfEmpty(){
       var decks = await this.listDecks();
       var titles = decks.map(function(d){ return d.title; });
-      var defaults = [SEED_DECK, SEED_DECK_2];
+      var defaults = [SEED_DECK, SEED_DECK_2, SEED_DECK_3];
       var addedAny = false;
       for (var i = 0; i < defaults.length; i++){
         if (titles.indexOf(defaults[i].title) === -1){
