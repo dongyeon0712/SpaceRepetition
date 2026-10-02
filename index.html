@@ -17,7 +17,7 @@
   body{background:var(--paper); color:var(--ink); font-family:"Open Sans",system-ui,sans-serif;}
   .mono{font-family:"JetBrains Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums;}
   .app{
-    max-width:900px; margin:0 auto; width:100%; background:var(--paper);
+    width:100%; background:var(--paper);
     position:relative; overflow-x:hidden;
   }
   .topbar{
@@ -157,7 +157,7 @@
 
   /* tab bar */
   nav.tabbar{
-    position:fixed; left:50%; transform:translateX(-50%); bottom:0; width:100%; max-width:900px;
+    position:fixed; left:0; bottom:0; width:100%;
     z-index:5; display:flex; background:var(--surface);
     border-top:1px solid var(--line); padding:8px 6px calc(8px + env(safe-area-inset-bottom,0px));
   }
@@ -736,58 +736,11 @@
   // ---------- add tab: upload / paste notes, generate cards with Claude ----------
   var addState = { text: "", fileName: "", title: "", status: "idle", error: "", generated: null };
   var Capabilities = { sample: null, checked: false };
-  var API_KEY_STORAGE = "mhcid-recall-api-key";
-
-  function getApiKey(){
-    try { return localStorage.getItem(API_KEY_STORAGE) || ""; } catch(e){ return ""; }
-  }
-  function setApiKey(k){
-    try { if (k) localStorage.setItem(API_KEY_STORAGE, k); else localStorage.removeItem(API_KEY_STORAGE); } catch(e){}
-  }
 
   async function initCapabilities(){
     try { Capabilities.sample = window.claude && window.claude.use ? await window.claude.use("sample") : null; }
     catch(e){ Capabilities.sample = null; }
     Capabilities.checked = true;
-  }
-
-  function extractJson(text){
-    try { return JSON.parse(text); } catch(e){}
-    var fence = text.match(/```(?:json)?\s*([\s\S]*?)```/i);
-    if (fence){ try { return JSON.parse(fence[1]); } catch(e){} }
-    var start = text.search(/[\{\[]/);
-    var end = Math.max(text.lastIndexOf("}"), text.lastIndexOf("]"));
-    if (start >= 0 && end > start){
-      try { return JSON.parse(text.slice(start, end + 1)); } catch(e){}
-    }
-    return null;
-  }
-
-  async function callAnthropicDirect(apiKey, prompt){
-    var res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-        "anthropic-dangerous-direct-browser-access": "true"
-      },
-      body: JSON.stringify({
-        model: "claude-haiku-4-5-20251001",
-        max_tokens: 3000,
-        messages: [{ role: "user", content: prompt }]
-      })
-    });
-    var body = await res.json().catch(function(){ return null; });
-    if (!res.ok){
-      var msg = (body && body.error && body.error.message) || ("Request failed (" + res.status + ")");
-      var err = new Error(msg);
-      err.status = res.status;
-      throw err;
-    }
-    var text = (body && body.content && body.content[0] && body.content[0].text) || "";
-    if (!text) throw new Error("Empty response");
-    return text;
   }
 
   function renderAdd(){
@@ -829,26 +782,11 @@
 
     if (Capabilities.checked && !Capabilities.sample){
       html += '<div class="banner banner-info">Automatic generation is included free with your Claude subscription. Open this app from inside the Claude app or claude.ai (not a bare link) and Generate cards works with no setup.</div>';
-      html += apiKeySettingsHtml();
       html += manualFormHtml();
     }
 
     main.innerHTML = html;
     wireAddTab();
-  }
-
-  function apiKeySettingsHtml(){
-    var key = getApiKey();
-    return '<div class="card">' +
-      '<h2 class="section-title">Advanced: use your own API key instead</h2>' +
-      '<div style="font-size:14px;color:var(--ink-dim);">Optional, and not free — Anthropic’s API is billed separately from your Claude subscription and requires adding your own payment method at console.anthropic.com. Only set this up if you specifically want generation to work without ever opening the Claude app. The key is stored only in this browser and is never sent anywhere except api.anthropic.com.</div>' +
-      '<input id="apiKeyInput" type="password" placeholder="' + (key ? "Key saved, ending " + esc(key.slice(-4)) : "sk-ant-...") + '">' +
-      '<div style="display:flex;gap:8px;">' +
-        '<button class="btn btn-ghost" id="saveKeyBtn">Save key</button>' +
-        (key ? '<button class="btn btn-ghost" id="removeKeyBtn">Remove key</button>' : '') +
-      '</div>' +
-      '<div class="banner banner-info">This only works when this page is self-hosted or opened as a local file. The claude.ai link blocks outside network calls for security, so a saved key will not work there.</div>' +
-      '</div>';
   }
 
   function manualFormHtml(){
@@ -873,14 +811,6 @@
     if (saveBtn) saveBtn.onclick = saveGeneratedDeck;
     var manualBtn = document.getElementById("manualAddBtn");
     if (manualBtn) manualBtn.onclick = addManualCard;
-    var saveKeyBtn = document.getElementById("saveKeyBtn");
-    if (saveKeyBtn) saveKeyBtn.onclick = function(){
-      var val = document.getElementById("apiKeyInput").value.trim();
-      if (val) setApiKey(val);
-      render();
-    };
-    var removeKeyBtn = document.getElementById("removeKeyBtn");
-    if (removeKeyBtn) removeKeyBtn.onclick = function(){ setApiKey(""); render(); };
   }
 
   async function addManualCard(){
@@ -1000,25 +930,7 @@
       return;
     }
 
-    var apiKey = getApiKey();
-    if (!apiKey){
-      addState.error = "Add your Anthropic API key below to enable automatic generation, or add a card manually.";
-      render();
-      return;
-    }
-    addState.status = "generating";
-    render();
-    try {
-      var raw = await callAnthropicDirect(apiKey, prompt);
-      var parsed = extractJson(raw);
-      if (!applyGeneratedCards(parsed)) throw new Error("No cards found in the response");
-      addState.status = "idle";
-    } catch(e){
-      addState.status = "idle";
-      if (e && e.status === 401) addState.error = "That API key was rejected. Double-check it and save again.";
-      else if (e && e.status === 429) addState.error = "Rate limited by the API  -  try again in a moment.";
-      else addState.error = "Couldn't generate cards (" + (e && e.message ? e.message : "request failed") + "). If you're using the claude.ai link, this needs the page to be self-hosted instead  -  see the note below.";
-    }
+    addState.error = "Automatic generation isn't available in this view  -  open this app from inside the Claude app, or add a card manually below.";
     render();
   }
 
