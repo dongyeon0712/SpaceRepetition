@@ -334,6 +334,28 @@
     ]
   };
 
+  var SEED_DECK_4 = {
+    title: "New Dark Age - Chasm (Bridle)",
+    description: "AI-drafted answers from general knowledge of the book - worth checking against the chapter text",
+    cards: [
+      {front:"What does Bridle mean when he says tools are \"hidden metaphors\"?", back:"Our tools embed assumptions and worldviews that shape how we think, often invisibly; the technologies we build end up quietly structuring how we understand reality, not just what we can do with them."},
+      {front:"What does it mean to \"re-enchant\" our tools?", back:"To stop treating technology as a neutral, purely rational black box and instead reconnect with its wonder, uncertainty, and entanglement with the world, recovering a sense of mystery and responsibility rather than blind faith in computation."},
+      {front:"What does Bridle mean by saying technology has \"inherent instability\"?", back:"Technological systems are never fixed or fully knowable. They are constantly shifting, provisional, and prone to failure or unpredictable behavior, no matter how stable and controllable they are presented as being."},
+      {front:"What does Bridle mean by \"cloudiness\" of technology?", back:"Modern technology, like \"the cloud,\" appears abstract, weightless, and placeless, hiding its real physical infrastructure, material costs, and the opacity of how it actually works from the people who use it."},
+      {front:"What is Bridle's main argument about technology's effects on our lives?", back:"Instead of making the world more knowable and controllable, computational technology has made it more opaque and unpredictable, undermining our confidence in truth, agency, and our ability to act meaningfully."},
+      {front:"What does Bridle mean by holding claims about \"truth\" at \"arm's length\"?", back:"In a world saturated with data and automated systems, we should treat confident claims to objective truth with skepticism and distance, recognizing how much complexity, bias, and uncertainty they conceal."},
+      {front:"What does darkness represent beyond danger, according to Bridle?", back:"Darkness also stands for not-knowing itself, an honest, even necessary condition of humility in the face of complexity, rather than something to be feared or eliminated."},
+      {front:"What is the \"final and most crucial chasm\" Bridle describes?", back:"The gap between what our technological systems claim to know or calculate and what can actually be known or controlled, the unbridgeable distance between computation and genuine understanding."},
+      {front:"What feeling does writing about the \"dark age\" cause, and why should we do it anyway?", back:"It can feel despairing or hopeless, but Bridle argues we must still name and describe this condition honestly, because clear-eyed acknowledgment is the necessary first step toward any meaningful response."},
+      {front:"What does Bridle say is \"not lost\" in this dark age?", back:"Our capacity for care, solidarity, and collective action: the ability to think and act together with honesty and responsibility, even without total knowledge or control."},
+      {front:"What do our technologies ultimately represent?", back:"They are mirrors of our own values, choices, and relationships, reflections of collective human decisions and desires, not neutral or autonomous forces acting independently of us."},
+      {front:"What does \"netted hope\" mean in the context of this chapter?", back:"Hope that is shared and distributed across a network of people and relationships, rather than hope placed in any single technology, leader, or system: resilience through interconnection rather than individual certainty."},
+      {front:"How are technological tools and our understanding of the world connected?", back:"Our tools do not just reflect how we see the world; they actively shape our perception and understanding, so the way we build and relate to technology determines, in part, the way we are able to think."},
+      {front:"Why is understanding nonhuman agency important for thinking about technology?", back:"Systems, algorithms, and environments act and have effects in ways not fully reducible to any single human's intentions; recognizing this challenges us to rethink responsibility and control in more distributed terms."},
+      {front:"How does this chapter connect individual responsibility to collective action?", back:"It argues meaningful change cannot come from isolated individual understanding alone; it requires acting together, in situated and honest relationship with others, to build collective responses to shared uncertainty."}
+    ]
+  };
+
   var EASE_DEFAULT = 2.5, EASE_MIN = 1.3, EASE_MAX = 2.8;
 
   function nowIso(){ return new Date().toISOString(); }
@@ -402,7 +424,7 @@
     async seedIfEmpty(){
       var decks = await this.listDecks();
       var titles = decks.map(function(d){ return d.title; });
-      var defaults = [SEED_DECK, SEED_DECK_2, SEED_DECK_3];
+      var defaults = [SEED_DECK, SEED_DECK_2, SEED_DECK_3, SEED_DECK_4];
       var addedAny = false;
       for (var i = 0; i < defaults.length; i++){
         if (titles.indexOf(defaults[i].title) === -1){
