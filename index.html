@@ -334,6 +334,39 @@
     ]
   };
 
+  var SEED_DECK_5 = {
+    title: "Norman - Design of Everyday Things, Ch 1",
+    description: "The Psychopathology of Everyday Things. AI-drafted from general knowledge of the book - worth checking against the chapter text",
+    cards: [
+      {front:"What is an affordance?", back:"The relationship between the properties of an object and the capabilities of a person that determines how the object could possibly be used. It exists between object and user, not in the object alone."},
+      {front:"What is a signifier, and how does it differ from an affordance?", back:"A signifier is a perceivable cue (a label, mark, or shape) that tells people where an action should take place. Affordances say what actions are possible; signifiers communicate where and how to do them."},
+      {front:"What is discoverability?", back:"The ability to figure out what actions are possible and how to perform them just by looking at a device, without instructions. Good design makes the possible actions visible."},
+      {front:"What is a conceptual model?", back:"An explanation, usually simplified, of how something works. A good one lets people predict the results of their actions and work out what went wrong when things fail."},
+      {front:"What is the system image?", back:"Everything the user can see or learn about a product: its appearance, controls, manuals, and feedback. Users build their mental model from it, so a poor system image leads to a wrong model."},
+      {front:"What is feedback in design?", back:"Information that tells a person the result of an action, immediately and clearly. Too little leaves people unsure, and too much or poorly prioritized feedback is annoying or distracting."},
+      {front:"What is mapping, and what makes it good?", back:"The relationship between controls and their effects. Natural mappings use spatial layout or cultural conventions, such as stove knobs arranged like the burners they control."},
+      {front:"What are the Gulf of Execution and the Gulf of Evaluation?", back:"Execution: the gap between what a person wants to do and what the device allows. Evaluation: the gap between the device's state and the person's ability to understand it. Good design bridges both."},
+      {front:"What is human-centered design (HCD)?", back:"An approach that starts with understanding people's needs and capabilities and designs around them, instead of expecting people to adapt to the technology. It is iterative and based on observation."},
+      {front:"How does Norman say we should treat \"human error\"?", back:"Most so-called human error is really design error. When people slip or fail, ask what in the design allowed or encouraged the mistake, and design to prevent it and ease recovery."}
+    ]
+  };
+  var SEED_DECK_6 = {
+    title: "Just Enough Research - Ch 3: The Process",
+    description: "Erika Hall. AI-drafted from general knowledge of the book - worth checking against the chapter text",
+    cards: [
+      {front:"What are the steps of the research process in Hall's chapter \"The Process\"?", back:"Define the problem, select the approach, plan and prepare, collect the data, analyze the data, and report the results."},
+      {front:"Why does the process start with defining the problem?", back:"Research is only useful if it answers a specific question. A clear problem statement keeps the study focused and tells you what kind of data you need."},
+      {front:"What makes a good research question?", back:"It is specific, answerable with evidence, and tied to a decision the team needs to make. Vague goals like \"learn about users\" produce vague results."},
+      {front:"How do you select the right research approach?", back:"Match the method to the question. Use generative research to discover what you don't know, descriptive to understand the current situation, evaluative to test a design, and causal to learn why something happens."},
+      {front:"What is the difference between qualitative and quantitative research?", back:"Qualitative research explains why and how, using observation and interviews with few people. Quantitative research measures how many and how much, using larger samples and numbers."},
+      {front:"What belongs in planning and preparation?", back:"Choose participants, write the questions or script, schedule sessions, get the tools ready, and run a pilot to catch problems before real sessions."},
+      {front:"Why should you run a pilot?", back:"A practice session with a colleague finds confusing questions and logistics problems early, before they waste real participants' time."},
+      {front:"What should you do while collecting data?", back:"Record what actually happens (observations and quotes) separately from your interpretations, and have more than one person present when possible."},
+      {front:"How do you analyze qualitative data?", back:"Review the notes, look for patterns and themes across participants, group related observations (such as with sticky notes), and check which findings the evidence actually supports."},
+      {front:"What makes a good research report?", back:"It states the question, the method, and the findings clearly, and ends with recommendations the team can act on. Findings that never reach decision makers have no effect."},
+      {front:"Why does Hall say to share research with the whole team?", back:"Research changes decisions only when the people making them understand it, so involve stakeholders throughout and share findings in a form they will use."}
+    ]
+  };
   var SEED_DECK_4 = {
     title: "New Dark Age - Chasm (Bridle)",
     description: "AI-drafted answers from general knowledge of the book - worth checking against the chapter text",
@@ -424,7 +457,7 @@
     async seedIfEmpty(){
       var decks = await this.listDecks();
       var titles = decks.map(function(d){ return d.title; });
-      var defaults = [SEED_DECK, SEED_DECK_2, SEED_DECK_3, SEED_DECK_4];
+      var defaults = [SEED_DECK, SEED_DECK_2, SEED_DECK_3, SEED_DECK_4, SEED_DECK_5, SEED_DECK_6];
       var addedAny = false;
       for (var i = 0; i < defaults.length; i++){
         if (titles.indexOf(defaults[i].title) === -1){
@@ -756,7 +789,7 @@
   }
 
   // ---------- add tab: upload / paste notes, generate cards with Claude ----------
-  var addState = { text: "", fileName: "", title: "", status: "idle", error: "", generated: null };
+  var addState = { reading: "", text: "", fileName: "", title: "", status: "idle", error: "", generated: null };
   var Capabilities = { sample: null, checked: false };
 
   async function initCapabilities(){
@@ -767,18 +800,11 @@
 
   function renderAdd(){
     topbarTitle.textContent = "Add";
-    topbarSub.textContent = "Turn class notes into a new deck";
+    topbarSub.textContent = "Type what you are reading, get 10 cards";
     var html = '';
     html += '<div class="card">' +
-      '<h2 class="section-title">1. Bring in your notes</h2>' +
-      '<label class="dropzone" for="fileInput">' +
-        '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>' +
-        '<span>' + (addState.fileName ? 'Change file' : 'Upload a PDF or text file') + '</span>' +
-        '<input id="fileInput" type="file" accept=".pdf,.txt,.md">' +
-      '</label>' +
-      (addState.fileName ? '<span class="file-pill">' + esc(addState.fileName) + '</span>' : '') +
-      '<div style="font-size:12px;color:var(--ink-dim);">or paste text below</div>' +
-      '<textarea id="notesText" placeholder="Paste your summary notes here...">' + esc(addState.text) + '</textarea>' +
+      '<h2 class="section-title">1. What are you reading?</h2>' +
+      '<textarea id="readingText" style="min-height:70px" placeholder="Type a book, article, or topic (e.g. \'Chapter 3 of The Design of Everyday Things: affordances and signifiers\')">' + esc(addState.reading) + '</textarea>' +
       (addState.error ? '<div class="banner banner-danger">' + esc(addState.error) + '</div>' : '') +
       '</div>';
 
@@ -786,8 +812,8 @@
       '<h2 class="section-title">2. Generate flashcards</h2>' +
       '<input id="deckTitle" type="text" placeholder="Deck name (optional)" value="' + esc(addState.title) + '">' +
       '<button class="btn btn-gold btn-block" id="genBtn" ' + (addState.status === "generating" ? "disabled" : "") + '>' +
-      (addState.status === "generating" ? "Generating..." : "Generate cards") + '</button>' +
-      (addState.status === "generating" ? '<div class="status-line"><span class="spinner"></span> Reading your notes and writing questions...</div>' : '') +
+      (addState.status === "generating" ? "Generating..." : "Generate 10 cards") + '</button>' +
+      (addState.status === "generating" ? '<div class="status-line"><span class="spinner"></span> Writing your 10 questions...</div>' : '') +
       '</div>';
 
     if (addState.generated && addState.generated.cards && addState.generated.cards.length){
@@ -803,8 +829,10 @@
     }
 
     if (Capabilities.checked && !Capabilities.sample){
-      html += '<div class="banner banner-info">Automatic generation is included free with your Claude subscription. Open this app from inside the Claude app or claude.ai (not a bare link) and Generate cards works with no setup.</div>';
-      html += manualFormHtml();
+      html += '<div class="card"><h2 class="section-title">Claude API key</h2>' +
+        '<div style="font-size:12px;color:var(--ink-dim);">Needed to auto-generate cards outside the Claude app. Stored only in this browser.' + (getApiKey() ? ' A key is saved.' : '') + '</div>' +
+        '<input id="apiKeyInput" type="password" placeholder="sk-ant-..." autocomplete="off">' +
+        '<button class="btn btn-ghost btn-block" id="apiKeySave">Save key</button></div>';
     }
 
     main.innerHTML = html;
@@ -823,6 +851,11 @@
   function wireAddTab(){
     var fileInput = document.getElementById("fileInput");
     var notesText = document.getElementById("notesText");
+    var readingText = document.getElementById("readingText");
+    if (readingText) readingText.oninput = function(){ addState.reading = readingText.value; };
+    var keyInput = document.getElementById("apiKeyInput");
+    var keyBtn = document.getElementById("apiKeySave");
+    if (keyBtn) keyBtn.onclick = function(){ setApiKey(keyInput.value.trim()); render(); };
     var deckTitle = document.getElementById("deckTitle");
     var genBtn = document.getElementById("genBtn");
     if (notesText) notesText.oninput = function(){ addState.text = notesText.value; };
@@ -840,7 +873,7 @@
     var b = document.getElementById("manualBack").value.trim();
     if (!f || !b) return;
     await Store.addDeck(addState.title || "My notes", "Added manually", [{front:f, back:b}]);
-    addState = { text:"", fileName:"", title:"", status:"idle", error:"", generated:null };
+    addState = { reading:"", text:"", fileName:"", title:"", status:"idle", error:"", generated:null };
     await refresh();
     state.tab = "home";
     render();
@@ -906,12 +939,38 @@
     return text;
   }
 
-  function buildCardPrompt(text){
-    return "You are helping a student turn class notes into spaced-repetition flashcards.\n" +
-      "Read the notes below and reply with ONLY a JSON object of this exact shape:\n" +
+  function buildCardPrompt(reading, notes){
+    var p = "You are helping a student build spaced-repetition flashcards.\n" +
+      "Reply with ONLY a JSON object of this exact shape:\n" +
       '{"title": "short deck name", "cards": [{"front": "question", "back": "answer"}, ...]}\n' +
-      "Write 10 to 18 atomic flashcards, each testing exactly one idea, phrased as a clear question and a concise answer in plain text (no markdown, no LaTeX). " +
-      "Cover the most important concepts and skip filler or timestamps.\n\nNOTES:\n" + text.slice(0, 9000);
+      "Write EXACTLY 10 atomic flashcards, each testing exactly one idea, phrased as a clear question with a concise answer in plain text (no markdown, no LaTeX). " +
+      "Cover the most important concepts and skip filler.\n\n";
+    if (reading) p += "WHAT THE STUDENT IS READING (use your own knowledge of it if it is a known book, article or topic):\n" + reading.slice(0, 2000) + "\n\n";
+    if (notes) p += "NOTES:\n" + notes.slice(0, 9000);
+    return p;
+  }
+
+  // ---------- fallback: call the Claude API directly with the user's own key ----------
+  var KEY_STORE = "mhcid-recall-apikey";
+  function getApiKey(){ try { return localStorage.getItem(KEY_STORE) || ""; } catch(e){ return ""; } }
+  function setApiKey(k){ try { if (k) localStorage.setItem(KEY_STORE, k); else localStorage.removeItem(KEY_STORE); } catch(e){} }
+  async function callClaudeApi(prompt){
+    var r = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-api-key": getApiKey(),
+        "anthropic-version": "2023-06-01",
+        "anthropic-dangerous-direct-browser-access": "true"
+      },
+      body: JSON.stringify({ model: "claude-sonnet-5-5", max_tokens: 2000, messages: [{ role: "user", content: prompt }] })
+    });
+    if (!r.ok) throw { code: r.status === 401 ? "bad_key" : "api_error" };
+    var j = await r.json();
+    var t = (j.content && j.content[0] && j.content[0].text) || "";
+    var m = t.match(/\{[\s\S]*\}/);
+    if (!m) throw { code: "invalid_json" };
+    try { return JSON.parse(m[0]); } catch(e){ throw { code: "invalid_json" }; }
   }
 
   function applyGeneratedCards(data){
@@ -923,43 +982,48 @@
   }
 
   async function generateCards(){
-    var text = (document.getElementById("notesText") || {}).value || addState.text;
-    addState.text = text;
-    if (!text || !text.trim()){
-      addState.error = "Add some notes first  -  upload a file or paste text above.";
+    var rEl = document.getElementById("readingText"), nEl = document.getElementById("notesText");
+    var reading = ((rEl || {}).value || addState.reading || "").trim();
+    var notes = ((nEl || {}).value || addState.text || "").trim();
+    addState.reading = reading; addState.text = notes;
+    if (!reading && !notes){
+      addState.error = "Type what you're reading first.";
       render();
       return;
     }
     addState.error = "";
-    var prompt = buildCardPrompt(text);
+    var prompt = buildCardPrompt(reading, notes);
 
-    if (Capabilities.sample){
-      addState.status = "generating";
-      render();
-      try {
-        var data = await Capabilities.sample.json(prompt, { modelTier: "default", cache: false });
-        if (!applyGeneratedCards(data)) throw { code: "empty_completion" };
-        addState.status = "idle";
-      } catch(e){
-        addState.status = "idle";
-        var code = e && e.code;
-        if (code === "not_granted") addState.error = "Card generation needs your permission  -  try the Generate button again to allow it.";
-        else if (code === "rate_limited") addState.error = "Too many requests right now  -  try again in a moment.";
-        else if (code === "invalid_json") addState.error = "Couldn't parse the generated cards  -  try again.";
-        else addState.error = "Something went wrong generating cards. Try again, or add a card manually.";
-      }
+    if (!Capabilities.sample && !getApiKey()){
+      addState.error = "To generate cards here, paste your Claude API key in the box below (saved only in this browser).";
       render();
       return;
     }
-
-    addState.error = "Automatic generation isn't available in this view  -  open this app from inside the Claude app, or add a card manually below.";
+    addState.status = "generating";
+    render();
+    try {
+      var data = Capabilities.sample
+        ? await Capabilities.sample.json(prompt, { modelTier: "default", cache: false })
+        : await callClaudeApi(prompt);
+      if (!applyGeneratedCards(data)) throw { code: "empty_completion" };
+      if (!addState.title && reading) addState.title = addState.generated.title;
+      addState.status = "idle";
+    } catch(e){
+      addState.status = "idle";
+      var code = e && e.code;
+      if (code === "not_granted") addState.error = "Card generation needs your permission  -  try the Generate button again to allow it.";
+      else if (code === "rate_limited") addState.error = "Too many requests right now  -  try again in a moment.";
+      else if (code === "invalid_json") addState.error = "Couldn't parse the generated cards  -  try again.";
+      else if (code === "bad_key") addState.error = "That API key was rejected. Check it and save it again.";
+      else addState.error = "Something went wrong generating cards. Try again, or add a card manually.";
+    }
     render();
   }
 
   async function saveGeneratedDeck(){
     if (!addState.generated) return;
     await Store.addDeck(addState.title || addState.generated.title, "Generated from your notes", addState.generated.cards);
-    addState = { text:"", fileName:"", title:"", status:"idle", error:"", generated:null };
+    addState = { reading:"", text:"", fileName:"", title:"", status:"idle", error:"", generated:null };
     await refresh();
     state.tab = "home";
     render();
