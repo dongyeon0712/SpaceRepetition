@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>MHCID Recall</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <style>
@@ -170,8 +175,11 @@
   nav.tabbar button.active svg{stroke:var(--purple);}
   [hidden]{display:none!important;}
   a{color:var(--purple);}
+  details.archived summary{cursor:pointer; font-weight:700; color:var(--ink-dim); padding:6px 2px;}
 </style>
 
+</head>
+<body>
 <div class="app" id="app">
   <header class="topbar">
     <div class="brand-row">
@@ -389,6 +397,191 @@
     ]
   };
 
+  var SEED_DECK_7 = {
+    title: "The process",
+    description: "Generated from your notes",
+    cards: [
+     {
+      "front": "Why is research described as an iterative process rather than a one-time event?",
+      "back": "Findings raise new questions and the situation changes, so you repeat the cycle to keep learning and reduce risk."
+     },
+     {
+      "front": "What is the purpose of the planning and preparation step?",
+      "back": "To arrange the logistics, such as recruiting participants, preparing materials, and setting ethical ground rules, so data collection goes smoothly."
+     },
+     {
+      "front": "What is the first step in the research process?",
+      "back": "Define the problem: decide what you need to learn and why."
+     },
+     {
+      "front": "Why should you ask how the results will be used before starting research?",
+      "back": "It ensures the research leads to a decision or action rather than interesting but unused information."
+     },
+     {
+      "front": "Why is it useful to state your assumptions or hypotheses at the start?",
+      "back": "It makes your biases explicit so you can test them rather than unconsciously confirm them."
+     },
+     {
+      "front": "Why should research findings be shared with the team in a clear, usable form?",
+      "back": "Research only has value if it informs decisions, so results must be communicated in a way stakeholders understand and act on."
+     },
+     {
+      "front": "What makes a good research question?",
+      "back": "It is specific, focused on something you actually need to know, and answerable with the data you can collect."
+     },
+     {
+      "front": "What are the six general steps of the research process described in Just Enough Research?",
+      "back": "Define the problem, select the approach, plan and prepare, collect the data, analyze the data, and report the results."
+     },
+     {
+      "front": "What happens in the analysis step?",
+      "back": "You look for patterns in the collected data and interpret what they mean in relation to your research question."
+     },
+     {
+      "front": "Why should you define the problem before choosing a research method?",
+      "back": "The question you need answered determines which method is appropriate, so picking a method first risks collecting data that does not help."
+     }
+    ]
+  };
+  var SEED_DECK_8 = {
+    title: "Don Norman Ch1",
+    description: "Generated from your notes",
+    cards: [
+     {
+      "front": "What are the two gulfs in Norman's model of user interaction?",
+      "back": "The Gulf of Execution (figuring out how to do what you want) and the Gulf of Evaluation (figuring out what happened after acting)."
+     },
+     {
+      "front": "What is a mapping in design?",
+      "back": "The relationship between the elements of two sets of things, such as controls and their effects, e.g., stove knobs arranged to match burner layout."
+     },
+     {
+      "front": "What is the correct title of the book by Don Norman that was originally published as 'The Psychology of Everyday Things' (POET)?",
+      "back": "The Design of Everyday Things (DOET). The original 1988 title was The Psychology of Everyday Things; it was retitled in later editions."
+     },
+     {
+      "front": "What is human-centered design (HCD)?",
+      "back": "An approach that starts with understanding human needs, capabilities, and behavior, then designs products to fit them, rather than blaming users for errors caused by poor design."
+     },
+     {
+      "front": "How do affordances differ from signifiers?",
+      "back": "Affordances determine what actions are possible; signifiers communicate where the action should take place and make the affordance discoverable."
+     },
+     {
+      "front": "What is the system image?",
+      "back": "The combined information a product presents to the user (appearance, controls, manuals, labels) from which users form their conceptual model."
+     },
+     {
+      "front": "What is an affordance?",
+      "back": "The relationship between the properties of an object and the capabilities of an agent that determines how the object could possibly be used."
+     },
+     {
+      "front": "What is a conceptual model?",
+      "back": "A simplified explanation of how something works, which may be highly simplified, that lets a person understand and predict how to use it."
+     },
+     {
+      "front": "What is feedback in design?",
+      "back": "Communicating the results of an action to the user, so they know the action was received and what effect it had."
+     },
+     {
+      "front": "What is a signifier?",
+      "back": "A perceivable cue (sign, label, mark, sound) that communicates where an action should take place or what action is possible."
+     }
+    ]
+  };
+  var SEED_DECK_9 = {
+    title: "Paradigmatic Reflections and Qualitative research territories",
+    description: "Generated from your notes",
+    cards: [
+     {
+      "front": "What does ontology ask in a research paradigm?",
+      "back": "What is the nature of reality, and what exists to be known (for example, a single objective reality versus multiple constructed realities)?"
+     },
+     {
+      "front": "How does the interpretive paradigm view reality and knowledge?",
+      "back": "Reality is socially constructed and multiple; knowledge is created through understanding participants' meanings and perspectives in context."
+     },
+     {
+      "front": "Why does Tracy encourage researchers to reflect on their paradigmatic assumptions?",
+      "back": "Because assumptions shape the research questions, methods, analysis, and claims, and being aware of them improves the coherence and quality of a study."
+     },
+     {
+      "front": "What is the primary goal of the critical paradigm?",
+      "back": "To uncover power relations and inequities and to promote social change and emancipation."
+     },
+     {
+      "front": "What distinguishes postmodern and poststructural approaches in qualitative research?",
+      "back": "They question grand narratives and stable truths, emphasizing multiple, fragmented, and shifting meanings and the role of language and power in constructing knowledge."
+     },
+     {
+      "front": "How does Tracy use the idea of research 'territories' for qualitative inquiry?",
+      "back": "As a map of varied approaches and traditions, so researchers can understand the options, see how they differ in assumptions and aims, and choose or blend them thoughtfully."
+     },
+     {
+      "front": "What is the central aim of the post-positivist paradigm?",
+      "back": "To approximate an objective reality through careful, systematic observation while acknowledging that perfect objectivity is unattainable."
+     },
+     {
+      "front": "What does axiology ask in a research paradigm?",
+      "back": "What is the role of values and ethics in research, and what kind of knowledge is considered worthwhile?"
+     },
+     {
+      "front": "What is a paradigm in the context of qualitative research?",
+      "back": "A set of shared beliefs and assumptions about the nature of reality, knowledge, and values that guides how a researcher approaches and conducts research."
+     },
+     {
+      "front": "What does epistemology ask in a research paradigm?",
+      "back": "How do we know what we know, and what is the relationship between the knower and what is known?"
+     }
+    ]
+  };
+  var SEED_DECK_10 = {
+    title: "Choosing UX Research Methods (Rohrer)",
+    description: "Generated from your notes",
+    cards: [
+     {
+      "front": "How does qualitative research differ from quantitative research in UX?",
+      "back": "Qualitative research gathers direct observations to understand why or how to fix a problem; quantitative research gathers numerical data (indirectly, via instruments) to answer how many or how much."
+     },
+     {
+      "front": "Why does Rohrer recommend using multiple methods rather than a single one?",
+      "back": "Each method answers different questions and has different strengths and limits, so combining them throughout the product cycle gives a fuller, more reliable picture."
+     },
+     {
+      "front": "Which research question is best answered by qualitative methods, and which by quantitative methods?",
+      "back": "Qualitative: why is this a problem and how do we fix it? Quantitative: how many and how much?"
+     },
+     {
+      "front": "Which kinds of methods are suited to the early, strategize phase of a product, versus the later, assess phase?",
+      "back": "Early: discovery methods such as field studies, interviews, and diary studies. Later: evaluation and measurement methods such as usability benchmarking, A/B testing, and analytics."
+     },
+     {
+      "front": "What is a key weakness of attitudinal methods such as surveys and interviews?",
+      "back": "People's self-reports can differ from their actual behavior, so what they say may not match what they do."
+     },
+     {
+      "front": "What is the difference between attitudinal and behavioral research?",
+      "back": "Attitudinal research captures what people say (their beliefs and opinions); behavioral research captures what people actually do."
+     },
+     {
+      "front": "What three dimensions does Christian Rohrer use to organize UX research methods?",
+      "back": "Attitudinal vs. behavioral, qualitative vs. quantitative, and the context of use of the product (natural, scripted, decontextualized, or hybrid)."
+     },
+     {
+      "front": "Why is usability testing placed mainly in the behavioral, qualitative category?",
+      "back": "Because it observes what participants actually do with a product while attempting tasks, revealing usability problems and the reasons behind them."
+     },
+     {
+      "front": "What does Rohrer mean by 'scripted' context of use, and what is a typical example?",
+      "back": "The researcher has participants perform defined tasks to test specific aspects of a design, as in usability testing, which gives control but less naturalness."
+     },
+     {
+      "front": "What does a field study or ethnographic study offer that lab-based methods do not?",
+      "back": "It observes users in their natural context of use, revealing real-world behaviors, environments, and needs."
+     }
+    ]
+  };
+
   var EASE_DEFAULT = 2.5, EASE_MIN = 1.3, EASE_MAX = 2.8;
 
   function nowIso(){ return new Date().toISOString(); }
@@ -457,21 +650,28 @@
     async seedIfEmpty(){
       var decks = await this.listDecks();
       var titles = decks.map(function(d){ return d.title; });
-      var defaults = [SEED_DECK, SEED_DECK_2, SEED_DECK_3, SEED_DECK_4, SEED_DECK_5, SEED_DECK_6];
+      // archived: true marks decks already quizzed on; they start in the Archived section
+      var defaults = [
+        {deck: SEED_DECK, archived: true}, {deck: SEED_DECK_2, archived: true}, {deck: SEED_DECK_3, archived: true},
+        {deck: SEED_DECK_4, archived: true}, {deck: SEED_DECK_7, archived: true}, {deck: SEED_DECK_8, archived: true},
+        {deck: SEED_DECK_5, archived: true}, {deck: SEED_DECK_6, archived: true},
+        {deck: SEED_DECK_9, archived: false}, {deck: SEED_DECK_10, archived: false}
+      ];
       var addedAny = false;
       for (var i = 0; i < defaults.length; i++){
-        if (titles.indexOf(defaults[i].title) === -1){
-          await this.addDeck(defaults[i].title, defaults[i].description, defaults[i].cards);
+        var sd = defaults[i].deck;
+        if (titles.indexOf(sd.title) === -1){
+          await this.addDeck(sd.title, sd.description, sd.cards, defaults[i].archived);
           addedAny = true;
         }
       }
       return addedAny ? this.listDecks() : decks;
     },
 
-    async addDeck(title, description, rawCards){
+    async addDeck(title, description, rawCards, archived){
       var cards = rawCards.map(freshCard);
       if (this.mode === "db") {
-        var ref = await this.db.collection("decks").add({title: title, description: description || "", createdAt: nowIso()});
+        var ref = await this.db.collection("decks").add({title: title, description: description || "", createdAt: nowIso(), archived: !!archived});
         for (var i = 0; i < cards.length; i++){
           await ref.collection("cards").add(cards[i]);
         }
@@ -480,7 +680,7 @@
       var data = localRead();
       var id = uid();
       cards.forEach(function(c){ c.id = uid(); });
-      data.decks.push({id: id, title: title, description: description || "", createdAt: nowIso(), cards: cards});
+      data.decks.push({id: id, title: title, description: description || "", createdAt: nowIso(), archived: !!archived, cards: cards});
       localWrite(data);
       return id;
     },
@@ -511,6 +711,18 @@
       localWrite(data);
     },
 
+    async setArchived(deckId, archived){
+      if (this.mode === "db") {
+        await this.db.doc("decks/" + deckId).update({archived: !!archived});
+        return;
+      }
+      var data = localRead();
+      var deck = data.decks.find(function(d){ return d.id === deckId; });
+      if (!deck) return;
+      deck.archived = !!archived;
+      localWrite(data);
+    },
+
     async deleteDeck(deckId){
       if (this.mode === "db") {
         var col = this.db.doc("decks/" + deckId).collection("cards");
@@ -534,11 +746,13 @@
     var t = Date.now();
     return deck.cards.filter(function(c){ return new Date(c.due).getTime() <= t; });
   }
+  function activeDecks(){ return state.decks.filter(function(d){ return !d.archived; }); }
+  function archivedDecks(){ return state.decks.filter(function(d){ return d.archived; }); }
   function totalDue(){
-    return state.decks.reduce(function(sum, d){ return sum + dueCards(d).length; }, 0);
+    return activeDecks().reduce(function(sum, d){ return sum + dueCards(d).length; }, 0);
   }
   function totalCards(){
-    return state.decks.reduce(function(sum, d){ return sum + d.cards.length; }, 0);
+    return activeDecks().reduce(function(sum, d){ return sum + d.cards.length; }, 0);
   }
 
   async function refresh(){
@@ -571,24 +785,54 @@
       '<button class="btn btn-purple" id="startReviewBtn" ' + (due===0?'disabled':'') + '>Start review</button>' +
       '</div>';
     html += '<h2 class="section-title">Your decks <span class="mono" style="color:var(--ink-dim);font-weight:600;font-size:12px;">(' + total + ' cards total)</span></h2>';
-    if (!state.decks.length){
-      html += emptyState("No decks yet", "Add your class notes to generate your first deck.");
+    var archIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8M10 12h4"/></svg>';
+    var act = activeDecks(), arch = archivedDecks();
+    if (!act.length){
+      html += emptyState(state.decks.length ? "All decks archived" : "No decks yet", state.decks.length ? "Restore a deck below or add a new one." : "Type what you are reading to generate your first deck.");
     } else {
       html += '<div style="display:flex;flex-direction:column;gap:10px;">';
-      state.decks.forEach(function(d){
+      act.forEach(function(d){
         var dc = dueCards(d).length;
         html += '<div class="deck-row" data-deck="' + d.id + '">' +
           '<div class="deck-swatch">' + deckGlyph() + '</div>' +
           '<div class="deck-info"><div class="t">' + esc(d.title) + '</div><div class="d">' + d.cards.length + ' cards</div></div>' +
           (dc > 0 ? '<span class="chip chip-due mono">' + dc + ' due</span>' : '<span class="chip chip-done">done</span>') +
+          '<button class="icon-btn" data-archive="' + d.id + '" title="Archive deck">' + archIcon + '</button>' +
           '</div>';
       });
       html += '</div>';
     }
+    if (arch.length){
+      html += '<details class="archived"' + (state.showArchived ? ' open' : '') + '><summary>Archived (' + arch.length + ')</summary>' +
+        '<div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">';
+      arch.forEach(function(d){
+        html += '<div class="deck-row" style="cursor:default;opacity:.8;">' +
+          '<div class="deck-swatch">' + deckGlyph() + '</div>' +
+          '<div class="deck-info"><div class="t">' + esc(d.title) + '</div><div class="d">' + d.cards.length + ' cards</div></div>' +
+          '<button class="btn btn-ghost" style="padding:8px 14px;font-size:14px;" data-restore="' + d.id + '">Restore</button></div>';
+      });
+      html += '</div></details>';
+    }
     main.innerHTML = html;
     var startBtn = document.getElementById("startReviewBtn");
     if (startBtn) startBtn.onclick = function(){ beginReview(null); };
-    main.querySelectorAll(".deck-row").forEach(function(row){
+    main.querySelectorAll("[data-archive]").forEach(function(btn){
+      btn.onclick = async function(ev){
+        ev.stopPropagation();
+        await Store.setArchived(btn.dataset.archive, true);
+        await refresh();
+      };
+    });
+    main.querySelectorAll("[data-restore]").forEach(function(btn){
+      btn.onclick = async function(){
+        state.showArchived = true;
+        await Store.setArchived(btn.dataset.restore, false);
+        await refresh();
+      };
+    });
+    var archEl = main.querySelector("details.archived");
+    if (archEl) archEl.ontoggle = function(){ state.showArchived = archEl.open; };
+    main.querySelectorAll(".deck-row[data-deck]").forEach(function(row){
       row.onclick = function(){
         var id = row.dataset.deck;
         var deck = state.decks.find(function(d){ return d.id === id; });
@@ -610,7 +854,7 @@
   }
 
   function beginReview(deckId){
-    var pool = deckId ? state.decks.filter(function(d){ return d.id === deckId; }) : state.decks;
+    var pool = deckId ? state.decks.filter(function(d){ return d.id === deckId; }) : activeDecks();
     var queue = [];
     pool.forEach(function(d){
       dueCards(d).forEach(function(c){ queue.push({deckId: d.id, card: c}); });
@@ -1045,3 +1289,5 @@
   })();
 })();
 </script>
+</body>
+</html>
