@@ -660,8 +660,13 @@
       var addedAny = false;
       for (var i = 0; i < defaults.length; i++){
         var sd = defaults[i].deck;
-        if (titles.indexOf(sd.title) === -1){
+        var idx = titles.indexOf(sd.title);
+        if (idx === -1){
           await this.addDeck(sd.title, sd.description, sd.cards, defaults[i].archived);
+          addedAny = true;
+        } else if (defaults[i].archived && decks[idx].archived === undefined){
+          // existing deck saved before archiving existed: archive it once (restoring it later sets false, so it stays restored)
+          await this.setArchived(decks[idx].id, true);
           addedAny = true;
         }
       }
