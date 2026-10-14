@@ -582,6 +582,53 @@
     ]
   };
 
+  var SEED_DECK_11 = {
+    title: "Norman: Design of Everyday Things, Ch. 6 Design Thinking",
+    description: "Generated from your notes",
+    cards: [
+     {
+      "front": "What is the Double-Diamond model of design?",
+      "back": "A model from the British Design Council with two phases of divergence then convergence: first find the right problem, then find the right solution."
+     },
+     {
+      "front": "What is the purpose of asking the Five Whys in design?",
+      "back": "To dig past symptoms to the root cause of a problem by repeatedly asking why something happens."
+     },
+     {
+      "front": "What happens in the first diamond of the Double-Diamond model?",
+      "back": "Designers diverge by exploring many possible problem framings, then converge on a single, well-defined problem statement."
+     },
+     {
+      "front": "Why does Norman advocate repeated iteration in human-centered design?",
+      "back": "Early understanding of people and problems is always incomplete, so repeated cycles of testing and refining reveal and correct mistakes."
+     },
+     {
+      "front": "What happens in the second diamond of the Double-Diamond model?",
+      "back": "Designers diverge by generating many possible solutions, then converge on the best one to develop."
+     },
+     {
+      "front": "What are the four activities of the human-centered design (HCD) process?",
+      "back": "Observation, ideation, prototyping, and testing. They are repeated in an iterative cycle."
+     },
+     {
+      "front": "What is activity-centered design as discussed by Norman?",
+      "back": "A design approach that focuses on the activities people are trying to accomplish rather than on individual users, often yielding more broadly useful designs."
+     },
+     {
+      "front": "Why does Norman recommend testing with small groups of about five users repeatedly rather than one large test?",
+      "back": "Small tests find most major problems quickly and cheaply, and repeating them after each fix catches new issues sooner than one big study."
+     },
+     {
+      "front": "What is the core problem with the designer's usual approach of solving the problem as first given, according to Norman in Chapter 6?",
+      "back": "The initial problem statement is often a symptom, not the real problem. Designers should look for the underlying root issue before solving."
+     },
+     {
+      "front": "What is a common reason that good design ideas fail to reach the market, according to Norman?",
+      "back": "Real-world constraints such as competitive pressure, time and budget limits, and conflicting stakeholder demands compromise or override good design."
+     }
+    ]
+  };
+
   var EASE_DEFAULT = 2.5, EASE_MIN = 1.3, EASE_MAX = 2.8;
 
   function nowIso(){ return new Date().toISOString(); }
@@ -655,7 +702,7 @@
         {deck: SEED_DECK, archived: true}, {deck: SEED_DECK_2, archived: true}, {deck: SEED_DECK_3, archived: true},
         {deck: SEED_DECK_4, archived: true}, {deck: SEED_DECK_7, archived: true}, {deck: SEED_DECK_8, archived: true},
         {deck: SEED_DECK_5, archived: true}, {deck: SEED_DECK_6, archived: true},
-        {deck: SEED_DECK_9, archived: false}, {deck: SEED_DECK_10, archived: false}
+        {deck: SEED_DECK_9, archived: true}, {deck: SEED_DECK_10, archived: true}, {deck: SEED_DECK_11, archived: true}
       ];
       var addedAny = false;
       for (var i = 0; i < defaults.length; i++){
