@@ -587,8 +587,12 @@
     description: "Generated from your notes",
     cards: [
      {
-      "front": "What is the Double-Diamond model of design?",
-      "back": "A model from the British Design Council with two phases of divergence then convergence: first find the right problem, then find the right solution."
+      "front": "What is a common reason that good design ideas fail to reach the market, according to Norman?",
+      "back": "Real-world constraints such as competitive pressure, time and budget limits, and conflicting stakeholder demands compromise or override good design."
+     },
+     {
+      "front": "What is the core problem with the designer's usual approach of solving the problem as first given, according to Norman in Chapter 6?",
+      "back": "The initial problem statement is often a symptom, not the real problem. Designers should look for the underlying root issue before solving."
      },
      {
       "front": "What is the purpose of asking the Five Whys in design?",
@@ -599,32 +603,75 @@
       "back": "Designers diverge by exploring many possible problem framings, then converge on a single, well-defined problem statement."
      },
      {
-      "front": "Why does Norman advocate repeated iteration in human-centered design?",
-      "back": "Early understanding of people and problems is always incomplete, so repeated cycles of testing and refining reveal and correct mistakes."
-     },
-     {
-      "front": "What happens in the second diamond of the Double-Diamond model?",
-      "back": "Designers diverge by generating many possible solutions, then converge on the best one to develop."
-     },
-     {
-      "front": "What are the four activities of the human-centered design (HCD) process?",
-      "back": "Observation, ideation, prototyping, and testing. They are repeated in an iterative cycle."
+      "front": "What is the Double-Diamond model of design?",
+      "back": "A model from the British Design Council with two phases of divergence then convergence: first find the right problem, then find the right solution."
      },
      {
       "front": "What is activity-centered design as discussed by Norman?",
       "back": "A design approach that focuses on the activities people are trying to accomplish rather than on individual users, often yielding more broadly useful designs."
      },
      {
+      "front": "Why does Norman advocate repeated iteration in human-centered design?",
+      "back": "Early understanding of people and problems is always incomplete, so repeated cycles of testing and refining reveal and correct mistakes."
+     },
+     {
+      "front": "What are the four activities of the human-centered design (HCD) process?",
+      "back": "Observation, ideation, prototyping, and testing. They are repeated in an iterative cycle."
+     },
+     {
+      "front": "What happens in the second diamond of the Double-Diamond model?",
+      "back": "Designers diverge by generating many possible solutions, then converge on the best one to develop."
+     },
+     {
       "front": "Why does Norman recommend testing with small groups of about five users repeatedly rather than one large test?",
       "back": "Small tests find most major problems quickly and cheaply, and repeating them after each fix catches new issues sooner than one big study."
+     }
+    ]
+  };
+
+  var SEED_DECK_12 = {
+    title: "Just Enough Research: Ch. 5 User and Customer Research",
+    description: "Generated from your notes",
+    cards: [
+     {
+      "front": "Why should interviewers avoid leading questions?",
+      "back": "They bias the answer toward what the interviewer expects, contaminating the data."
      },
      {
-      "front": "What is the core problem with the designer's usual approach of solving the problem as first given, according to Norman in Chapter 6?",
-      "back": "The initial problem statement is often a symptom, not the real problem. Designers should look for the underlying root issue before solving."
+      "front": "What is the best-known strength of one-on-one interviews in user research?",
+      "back": "They let you explore a person's motivations, language, and experiences in depth, and follow up on surprising answers."
      },
      {
-      "front": "What is a common reason that good design ideas fail to reach the market, according to Norman?",
-      "back": "Real-world constraints such as competitive pressure, time and budget limits, and conflicting stakeholder demands compromise or override good design."
+      "front": "Why does Hall say you should not simply ask people what they want?",
+      "back": "People are poor at predicting or reporting their own future behavior, so observing what they actually do is more reliable than relying on what they say."
+     },
+     {
+      "front": "What is the main risk of using focus groups for user research?",
+      "back": "Group dynamics skew results: people influence each other and say what sounds good, so focus groups reveal opinions rather than real behavior."
+     },
+     {
+      "front": "What is a contextual inquiry?",
+      "back": "A research method in which you observe and interview people while they perform tasks in their own environment."
+     },
+     {
+      "front": "What is the difference between a user and a customer in research?",
+      "back": "A user is the person who actually uses the product; a customer is the person who pays for or chooses it. They may be different people, and both can matter."
+     },
+     {
+      "front": "What is the core principle of ethnographic or field research?",
+      "back": "Observe people in their natural context to learn how they really behave, rather than in artificial settings."
+     },
+     {
+      "front": "In Erika Hall's framing, what is the main purpose of user research?",
+      "back": "To understand the people you are designing for (their needs, behaviors, and context) so you can make better design and business decisions instead of relying on assumptions."
+     },
+     {
+      "front": "What kind of interview question does Hall recommend over leading or hypothetical questions?",
+      "back": "Open-ended questions about past real behavior, such as 'Tell me about the last time you did X', rather than leading or hypothetical questions."
+     },
+     {
+      "front": "What is the value of a persona, and what is its common weakness?",
+      "back": "Personas help teams keep real user needs in mind, but they are only useful if based on actual research; ones built on assumptions or stereotypes mislead the team."
      }
     ]
   };
@@ -700,9 +747,9 @@
       // archived: true marks decks already quizzed on; they start in the Archived section
       var defaults = [
         {deck: SEED_DECK, archived: true}, {deck: SEED_DECK_2, archived: true}, {deck: SEED_DECK_3, archived: true},
-        {deck: SEED_DECK_4, archived: true}, {deck: SEED_DECK_7, archived: true}, {deck: SEED_DECK_8, archived: true},
-        {deck: SEED_DECK_5, archived: true}, {deck: SEED_DECK_6, archived: true},
-        {deck: SEED_DECK_9, archived: true}, {deck: SEED_DECK_10, archived: true}, {deck: SEED_DECK_11, archived: true}
+        {deck: SEED_DECK_4, archived: true}, {deck: SEED_DECK_5, archived: true}, {deck: SEED_DECK_6, archived: true},
+        {deck: SEED_DECK_7, archived: true}, {deck: SEED_DECK_8, archived: true}, {deck: SEED_DECK_9, archived: true},
+        {deck: SEED_DECK_10, archived: true}, {deck: SEED_DECK_11, archived: false}, {deck: SEED_DECK_12, archived: false}
       ];
       var addedAny = false;
       for (var i = 0; i < defaults.length; i++){
